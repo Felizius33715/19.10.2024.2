@@ -34,9 +34,10 @@ private:
 	int* Arr;
 };
 
-void copyElement(smartArray sa, smartArray sa1, int size, int size1) {
+void copyElement(smartArray &sa, smartArray &sa1, int size, int size1) {
+	sa1.erazeElement(size1);
 	int el;
-	for (int i = 0; i < size || size1; i++) {
+	for (int i = 0; (i < size) && (i < size1); i++) {
 		el = sa.ejectElement(i,size);
 		sa1.setElement(i, el, size1);
 	}
@@ -60,7 +61,6 @@ void create_arr(int size, int size1) {
 		sa1.setElement(i, value1, size1);
 	}
 	for (int j = 0; j < size1; j++) { sa1.printElement(j); }
-	sa1.erazeElement(size1);
 	copyElement(sa, sa1, size, size1);
 	for (int j = 0; j < size1; j++) { sa1.printElement(j); }
 }
