@@ -3,13 +3,14 @@
 
 class smartArray {
 public:
-	smartArray(int size) {
+	smartArray(int size) : size_arr(0), capacity(size), Arr(new int[size]) {
 		size_arr = 0;
 		Arr = new int[size];
 	}
 	~smartArray() {
 		delete[] Arr;
 	}
+
 	void push(int value, int size) {
 		if (size_arr < size) { Arr[size_arr] = value; size_arr++; }
 		else std::cout << "Array is overloaded, not enough space";
@@ -36,12 +37,29 @@ public:
 		else std::cout << "Out of range in func ejectElement, returned -1" << std::endl;
 		return -1;
 	}
+
+	smartArray& operator=(const smartArray& other) {
+		if (this != &other) {
+			delete[] Arr;
+			capacity = other.capacity;
+			size_arr = other.size_arr;
+			Arr = new int[capacity];
+			for (int i = 0; i < size_arr; ++i) {
+				Arr[i] = other.Arr[i];
+			}
+		}
+		return *this;
+	}
+
 private:
 	int* Arr;
 	int size_arr;
+	int capacity;
 };
 
-void copyElement(smartArray &sa, smartArray &sa1, int size, int size1) {
+
+
+/*void copyElement(smartArray& sa, smartArray& sa1, int size, int size1) {
 	sa1.erazeElement(size1);
 	int el;
 	for (int i = 0; (i < size) && (i < size1); i++) {
@@ -49,7 +67,7 @@ void copyElement(smartArray &sa, smartArray &sa1, int size, int size1) {
 		//sa1.setElement(i, el, size1);
 		sa1.push(el, size);
 	}
-}
+}*/
 
 void create_arr(int size, int size1) {
 	smartArray sa(size);
@@ -71,7 +89,8 @@ void create_arr(int size, int size1) {
 		sa1.push(value1, size);
 	}
 	for (int j = 0; j < size1; j++) { sa1.printElement(j); }
-	copyElement(sa, sa1, size, size1);
+	//copyElement(sa, sa1, size, size1);
+	sa1 = sa;
 	for (int j = 0; j < size1; j++) { sa1.printElement(j); }
 }
 
