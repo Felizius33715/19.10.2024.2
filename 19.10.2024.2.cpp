@@ -3,10 +3,7 @@
 
 class smartArray {
 public:
-	smartArray(int size) : size_arr(0), capacity(size), Arr(new int[size]) {
-		size_arr = 0;
-		Arr = new int[size];
-	}
+	smartArray(int size) : size_arr(0), capacity(size), Arr(new int[size]) {}
 	~smartArray() {
 		delete[] Arr;
 	}
