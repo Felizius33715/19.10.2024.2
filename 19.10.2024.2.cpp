@@ -54,7 +54,7 @@ public:
 	smartArray(const smartArray &other) {
 		capacity = other.capacity;
 		size_arr = other.size_arr;
-		Arr = new int[capacity];
+		Arr = new int[capacity] {0};
 		for (int i = 0; i < size_arr; ++i) {
 			Arr[i] = other.Arr[i];
 		}
