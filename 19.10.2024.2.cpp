@@ -51,6 +51,22 @@ public:
 		return *this;
 	}
 
+	smartArray(const smartArray &other) {
+			/*capacity = other.capacity;
+			size_arr = other.size_arr;
+			Arr = new int[capacity];
+			for (int i = 0; i < size_arr; ++i) {
+				Arr[i] = other.Arr[i];
+			}
+		return *this;*/
+		capacity = other.capacity;
+		size_arr = other.size_arr;
+		Arr = new int[capacity];
+		for (int i = 0; i < size_arr; ++i) {
+			Arr[i] = other.Arr[i];
+		}
+	}
+
 private:
 	int* Arr;
 	int size_arr;
@@ -92,6 +108,8 @@ void create_arr(int size, int size1) {
 	//copyElement(sa, sa1, size, size1);
 	sa1 = sa;
 	for (int j = 0; j < size1; j++) { sa1.printElement(j); }
+	smartArray a1(sa);
+	for (int j = 0; j < size1; j++) { a1.printElement(j); }
 }
 
 int main()
